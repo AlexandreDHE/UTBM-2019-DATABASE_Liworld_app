@@ -2,60 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\EntrepriseRequest;
+use App\Http\Requests\TypePosteRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 use App\Entreprise;
+use App\TypePoste;
 
 class AdminController extends Controller
 {
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
+
   public function __construct()
   {
       $this->middleware('auth');
   }
 
-  /**
-   * Show the application dashboard.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function index()
+/* GET -- AFFICHAGE DES VUES */
+
+  public function index_entreprise()
   {
-      return view('admin/sections/entrepriseForm');
+      $entreprises = array(array());
+      $entreprises = $this->getDataEntreprise();
+      return view('admin/sections/entrepriseForm')->with('entreprises', $entreprises);
+
+  }
+
+  public function index_typePoste()
+  {
+      return view('admin/sections/typePosteForm');
   }
 
 
-  /**
-   * Get a validator for an incoming registration request.
-   *
-   * @param  array  $data
-   * @return \Illuminate\Contracts\Validation\Validator
-   */
-  protected function validator(array $data)
+/* POST -- FORMULAIRE D'ADMINISTRATION */
+
+  public function postFormEntreprise(EntrepriseRequest $request)
   {
-      return Validator::make($data, [
-          'nom' => ['required', 'string', 'max:200'],
-          'siegeSocial' => ['required', 'string'],
-      ]);
+      $table = new Entreprise;
+      $table->nom = $request->input('nom');
+      $table->siegeSocial = $request->input('siegeSocial');
+      $table->save();
+
+      $entreprises = array(array());
+      $entreprises = $this->getDataEntreprise();
+      return view('admin/sections/entrepriseForm')->with('entreprises', $entreprises);
   }
 
-  /**
-   * Create a new user instance after a valid registration.
-   *
-   * @param  array  $data
-   * @return \App\
-   */
-  protected function create(array $data)
+  public function postFormTypePosnte(EntrepriseRequest $request)
   {
-      return Entreprises::create([
-          'nom' => $data['nom'],
-          'siegeSocial' => $data['siegeSocial']
-      ]);
+      $table = new TypePoste;
+      $table->description = $request->input('nom');
+      $table->save();
+      return view('admin/sections/typePosteForm');
+  }
+
+/* SELECT -- AFFICHAGE DES DONNÉES */
+
+  public function getDataEntreprise()
+  {
+    $res = array(array());
+    $req = DB::table('entreprises')->select('nom', 'siegeSocial')->get();
+    $i = 0;
+
+    foreach ($req as $req) {
+        $res[$i][0] = $req->nom;
+        $res[$i][1] = $req->siegeSocial;
+        $i++;
+    }
+
+    return $res;
   }
 
 }

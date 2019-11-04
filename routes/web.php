@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/entreprise', 'AdminController@index_entreprise')->name('admin');
+Route::post('/entreprise', 'AdminController@postFormEntreprise')->name('entrepriseFORM');
 
-Route::post('/admin', 'AdminController@create')->name('entrepriseFORM');
+Route::get('/typePoste', 'AdminController@index_typePoste')->name('adminnistrateur');
+Route::post('/typePoste', 'AdminController@postFormTypePoste')->name('typePosteFORM');

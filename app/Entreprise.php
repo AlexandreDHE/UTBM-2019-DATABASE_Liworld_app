@@ -2,21 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\Entreprise as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Entreprise extends Authenticatable
+class Entreprise extends Model
 {
-    use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'nom','siegeSocial',
-    ];
-
+    protected $table = 'entreprises';
+    public $timestamps = false;
 }

@@ -1,3 +1,4 @@
+
 @extends('admin.adminLayout')
 
 @section('entreprise')
@@ -46,12 +47,37 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Register') }}
+                            {{ __('Valider') }}
                         </button>
                     </div>
                 </div>
             </form>
+
+
         </div>
-    </div>
-</div>
+      </div>
+
+          <div class="card-body">
+
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Siège social</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                @if(count($entreprises)>1)
+                  @for ($i = 0; $i < count($entreprises); $i++)
+                    <tr>
+                      <td>{{$entreprises[$i][0]}}</td>
+                      <td>{{$entreprises[$i][1]}}</td>
+                    </tr>
+                  @endfor
+                @endif
+              </tbody>
+            </table>
+          </div>
+
 @endsection

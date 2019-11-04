@@ -15,7 +15,7 @@ class TypesPostes extends Migration
     {
       Schema::create('typesPostes', function (Blueprint $table) {
           $table->bigIncrements('id');
-          $table->string('description');
+          $table->string('description')->unique();
       });
     }
 
