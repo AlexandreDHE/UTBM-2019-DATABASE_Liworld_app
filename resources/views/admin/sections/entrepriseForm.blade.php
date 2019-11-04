@@ -57,27 +57,27 @@
         </div>
       </div>
 
-          <div class="card-body">
+      <div class="card-body">
 
-            <table class="table">
-              <thead class="thead-dark">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Nom</th>
+              <th scope="col">Siège social</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @if(count($entreprises)>1)
+              @for ($i = 0; $i < count($entreprises); $i++)
                 <tr>
-                  <th scope="col">Nom</th>
-                  <th scope="col">Siège social</th>
+                  <td>{{$entreprises[$i][0]}}</td>
+                  <td>{{$entreprises[$i][1]}}</td>
                 </tr>
-              </thead>
-
-              <tbody>
-                @if(count($entreprises)>1)
-                  @for ($i = 0; $i < count($entreprises); $i++)
-                    <tr>
-                      <td>{{$entreprises[$i][0]}}</td>
-                      <td>{{$entreprises[$i][1]}}</td>
-                    </tr>
-                  @endfor
-                @endif
-              </tbody>
-            </table>
-          </div>
+              @endfor
+            @endif
+          </tbody>
+        </table>
+      </div>
 
 @endsection

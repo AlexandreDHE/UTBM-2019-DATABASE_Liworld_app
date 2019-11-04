@@ -18,7 +18,9 @@ class AdminController extends Controller
       $this->middleware('auth');
   }
 
+/*****************************/
 /* GET -- AFFICHAGE DES VUES */
+/*****************************/
 
   public function index_entreprise()
   {
@@ -30,11 +32,14 @@ class AdminController extends Controller
 
   public function index_typePoste()
   {
-      return view('admin/sections/typePosteForm');
+    $typePoste = array(array());
+    $typePoste = $this->getDataTypePoste();
+    return view('admin/sections/typePosteForm')->with('typePoste', $typePoste);
   }
 
-
+/***************************************/
 /* POST -- FORMULAIRE D'ADMINISTRATION */
+/***************************************/
 
   public function postFormEntreprise(EntrepriseRequest $request)
   {
@@ -48,15 +53,20 @@ class AdminController extends Controller
       return view('admin/sections/entrepriseForm')->with('entreprises', $entreprises);
   }
 
-  public function postFormTypePosnte(EntrepriseRequest $request)
+  public function postFormTypePoste(EntrepriseRequest $request)
   {
       $table = new TypePoste;
       $table->description = $request->input('nom');
       $table->save();
-      return view('admin/sections/typePosteForm');
+
+      $typePoste = array(array());
+      $typePoste = $this->getDataTypePoste();
+      return view('admin/sections/typePosteForm')->with('typePoste', $typePoste);
   }
 
+/***********************************/
 /* SELECT -- AFFICHAGE DES DONNÉES */
+/***********************************/
 
   public function getDataEntreprise()
   {
@@ -67,6 +77,20 @@ class AdminController extends Controller
     foreach ($req as $req) {
         $res[$i][0] = $req->nom;
         $res[$i][1] = $req->siegeSocial;
+        $i++;
+    }
+
+    return $res;
+  }
+
+  public function getDataTypePoste()
+  {
+    $res = array(array());
+    $req = DB::table('typesPostes')->select('description')->get();
+    $i = 0;
+
+    foreach ($req as $req) {
+        $res[$i][0] = $req->description;
         $i++;
     }
 

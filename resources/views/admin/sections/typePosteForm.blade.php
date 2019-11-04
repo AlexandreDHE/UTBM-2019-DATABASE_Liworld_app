@@ -37,5 +37,27 @@
           </form>
         </div>
     </div>
+
+    <div class="card-body">
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Type d'emploi</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @if(count($typePoste)>1)
+            @for ($i = 0; $i < count($typePoste); $i++)
+              <tr>
+                <td>{{$typePoste[$i][0]}}</td>
+              </tr>
+            @endfor
+          @endif
+        </tbody>
+      </table>
+    </div>
+
 </div>
 @endsection
