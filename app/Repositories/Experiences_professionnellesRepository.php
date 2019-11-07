@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Experiences_professionnelles;
 
-class Experiences_professionnellesRepository implements EntreprisesRepositoryInterface
+class Experiences_professionnellesRepository implements Experiences_professionnellesRepositoryInterface
 {
 
     protected $experiencesProfessionnelles;

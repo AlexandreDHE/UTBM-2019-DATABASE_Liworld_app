@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Competences;
 
-class CompetencesRepository implements EntreprisesRepositoryInterface
+class CompetencesRepository implements CompetencesRepositoryInterface
 {
 
     protected $competences;

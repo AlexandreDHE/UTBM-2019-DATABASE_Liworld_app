@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Entreprises_Domaines;
 
-class Entreprises_DomainesRepository implements EntreprisesRepositoryInterface
+class Entreprises_DomainesRepository implements Entreprises_DomainesRepositoryInterface
 {
 
     protected $entreprises_domaines;

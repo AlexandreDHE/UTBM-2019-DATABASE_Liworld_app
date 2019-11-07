@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Domaines;
 
-class DomainesRepository implements EntreprisesRepositoryInterface
+class DomainesRepository implements DomainesRepositoryInterface
 {
 
     protected $domaines;

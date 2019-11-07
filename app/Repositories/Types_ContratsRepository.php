@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Types_Contrats;
 
-class Types_ContratsRepository implements EntreprisesRepositoryInterface
+class Types_ContratsRepository implements Types_ContratsRepositoryInterface
 {
 
     protected $typesContrats;
