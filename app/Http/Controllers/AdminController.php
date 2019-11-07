@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Save_SimpleRequete;
+use App\Repositories\EntreprisesRepository;
 
-use App\Http\Requests\EntrepriseRequest;
+use App\Http\Requests\EntrepriseRequest; 
 use App\Http\Requests\TypePosteRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-
-use App\Entreprise;
-use App\TypePoste;
 
 class AdminController extends Controller
 {
@@ -26,9 +23,8 @@ class AdminController extends Controller
 
   public function index_entreprise()
   {
-      $entreprises = array(array());
-      $entreprises = $this->getDataEntreprise();
-      return view('admin/sections/entrepriseForm')->with('entreprises', $entreprises);
+
+      return view('admin/sections/entrepriseForm');
 
   }
 
@@ -43,15 +39,77 @@ class AdminController extends Controller
 /* POST -- FORMULAIRE D'ADMINISTRATION */
 /***************************************/
 
-  public function postFormEntreprise(EntrepriseRequest $request, Save_SimpleRequete $fonc)
+  public function postFormEntreprise(EntrepriseRequest $request, EntreprisesRepository $entreprisesRepository)
   {
-
-      $fonc->saveEntreprise('ddg', 'dfd');
-
-      $entreprises = array(array());
-      $entreprises = $this->getDataEntreprise();
-      return view('admin/sections/entrepriseForm')->with('entreprises', $entreprises);
+      $entreprisesRepository->save("Liworld", "17", "allé des chenes", "Boissise le roi", "77310");
+      return view('admin/sections/entrepriseForm');
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   public function postFormTypePoste(EntrepriseRequest $request)
   {
@@ -64,25 +122,17 @@ class AdminController extends Controller
       return view('admin/sections/typePosteForm')->with('typePoste', $typePoste);
   }
 
-/***********************************/
-/* SELECT -- AFFICHAGE DES DONNÉES */
-/***********************************/
 
-  public function getDataEntreprise()
-  {
-    $res = array(array());
-    $req = DB::table('entreprises')->select('nom', 'siegeSocial')->get();
-    $i = 0;
 
-    foreach ($req as $req) {
-        $res[$i][0] = $req->nom;
-        $res[$i][1] = $req->siegeSocial;
-        $i++;
-    }
 
-    return $res;
-  }
 
+
+
+
+
+
+
+  
   public function getDataTypePoste()
   {
     $res = array(array());

@@ -68,14 +68,10 @@
           </thead>
 
           <tbody>
-            @if(count($entreprises)>1)
-              @for ($i = 0; $i < count($entreprises); $i++)
-                <tr>
-                  <td>{{$entreprises[$i][0]}}</td>
-                  <td>{{$entreprises[$i][1]}}</td>
-                </tr>
-              @endfor
-            @endif
+            <tr>
+              <td>text</td>
+              <td>text </td>
+            </tr>
           </tbody>
         </table>
       </div>
