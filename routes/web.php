@@ -23,3 +23,5 @@ Route::post('/entreprise', 'AdminController@postFormEntreprise')->name('entrepri
 
 Route::get('/typePoste', 'AdminController@index_typePoste')->name('adminnistrateur');
 Route::post('/typePoste', 'AdminController@postFormTypePoste')->name('typePosteFORM');
+
+Route::get('/experience', 'ExperienceProController@index')->name('experiencePro');

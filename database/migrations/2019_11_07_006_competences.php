@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Entreprises extends Migration
+class Competences extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class Entreprises extends Migration
      */
     public function up()
     {
-      Schema::create('entreprises', function (Blueprint $table) {
-          $table->bigIncrements('id');
-          $table->char('nom', 200);
-          $table->string('siegeSocial');
-      });
+        Schema::create('competences', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->char('description', 200);
+        });
     }
 
     /**
@@ -27,6 +26,6 @@ class Entreprises extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entreprises');
+        Schema::dropIfExists('competences');
     }
 }

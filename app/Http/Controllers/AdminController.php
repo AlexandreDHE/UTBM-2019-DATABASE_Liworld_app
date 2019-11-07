@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Save_SimpleRequete;
+
 use App\Http\Requests\EntrepriseRequest;
 use App\Http\Requests\TypePosteRequest;
 use Illuminate\Support\Facades\Validator;
@@ -41,12 +43,10 @@ class AdminController extends Controller
 /* POST -- FORMULAIRE D'ADMINISTRATION */
 /***************************************/
 
-  public function postFormEntreprise(EntrepriseRequest $request)
+  public function postFormEntreprise(EntrepriseRequest $request, Save_SimpleRequete $fonc)
   {
-      $table = new Entreprise;
-      $table->nom = $request->input('nom');
-      $table->siegeSocial = $request->input('siegeSocial');
-      $table->save();
+
+      $fonc->saveEntreprise('ddg', 'dfd');
 
       $entreprises = array(array());
       $entreprises = $this->getDataEntreprise();

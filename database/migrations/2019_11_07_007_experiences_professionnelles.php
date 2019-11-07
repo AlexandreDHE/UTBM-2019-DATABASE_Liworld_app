@@ -17,15 +17,21 @@ class ExperiencesProfessionnelles extends Migration
           $table->bigIncrements('id');
           $table->integer('id_user');
           $table->foreign('id_user')->references('id')->on('users');
-          $table->integer('id_typePoste');
-          $table->foreign('id_typePoste')->references('id')->on('typesPostes');
+          $table->integer('id_typesContrats');
+          $table->foreign('id_typesContrats')->references('id')->on('typesContrats');
+
           $table->integer('id_entreprise');
           $table->foreign('id_entreprise')->references('id')->on('entreprises');
           $table->char('nomPoste', 200);
-          $table->char('lieu', 200);
           $table->date('dateDebut');
           $table->date('dateFin');
           $table->string('description');
+
+          $table->integer('numeroVoie');
+          $table->char('rue', 200);
+          $table->char('ville', 200);
+          $table->integer('codePostale');
+
       });
     }
 
