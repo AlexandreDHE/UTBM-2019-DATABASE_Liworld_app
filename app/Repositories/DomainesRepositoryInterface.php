@@ -4,6 +4,6 @@ namespace App\Repositories;
 
 interface DomainesRepositoryInterface
 {
-    public function save();
+    public function save($nom);
     public function getData();
 }

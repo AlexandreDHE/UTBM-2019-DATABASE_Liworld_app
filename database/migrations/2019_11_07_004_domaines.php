@@ -15,7 +15,7 @@ class Domaines extends Migration
     {
         Schema::create('domaines', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('nom', 200);
+            $table->string('nom');
         });
     }
 

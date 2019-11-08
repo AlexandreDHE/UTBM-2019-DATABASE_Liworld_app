@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Repositories\EntreprisesRepository;
 use App\Repositories\Types_ContratsRepository;
+use App\Repositories\DomainesRepository;
 
 use App\Http\Requests\EntrepriseRequest; 
 use App\Http\Requests\TypePosteRequest;
+use App\Http\Requests\DomaineRequest; 
+
 use Illuminate\Support\Facades\Validator;
 
 
@@ -25,7 +28,7 @@ class AdminController extends Controller
   public function index_entreprise(EntreprisesRepository $entreprisesRepository)
   {
     $res = array(array());
-    $res = $this->getEntreprise($entreprisesRepository);
+    $res = $this->getEntreprises($entreprisesRepository);
     return view('admin/sections/entreprisesForm')->with('entreprises', $res);
 
   }
@@ -37,11 +40,18 @@ class AdminController extends Controller
     return view('admin/sections/typesContratsForm')->with('types_Contrats', $res);
   }
 
+  public function index_domaines(DomainesRepository $domainesRepository)
+  {
+    $res = array(array());
+    $res = $this->getDomaines($domainesRepository);
+    return view('admin/sections/domainesForm')->with('domaines', $res);
+  }
+
 /***************************************/
 /* GET -- FORMULAIRE D'ADMINISTRATION  */
 /***************************************/
 
-  public function getEntreprise(EntreprisesRepository $entreprisesRepository)
+  public function getEntreprises(EntreprisesRepository $entreprisesRepository)
   {
     return $entreprisesRepository->getData();
   }
@@ -51,15 +61,20 @@ class AdminController extends Controller
     return $types_ContratsRepository->getData();
   }
 
+  public function getDomaines(DomainesRepository $domainesRepository)
+  {
+    return $domainesRepository->getData();
+  }
+
 /***************************************/
 /* POST -- FORMULAIRE D'ADMINISTRATION */
 /***************************************/
 
   public function postFormEntreprise(EntrepriseRequest $request, EntreprisesRepository $entreprisesRepository)
   {
-      $entreprisesRepository->save(strtoupper ($request->input('nom')),$request->input('numeroVoie'), strtoupper ($request->input('rue')), strtoupper ($request->input('ville')), strtoupper ($request->input('codePostale')));
-      $res = $this->getEntreprise($entreprisesRepository);
-      return view('admin/sections/entreprisesForm')->with('entreprises', $res);;
+    $entreprisesRepository->save(strtoupper ($request->input('nom')),$request->input('numeroVoie'), strtoupper ($request->input('rue')), strtoupper ($request->input('ville')), strtoupper ($request->input('codePostale')));
+    $res = $this->getEntreprises($entreprisesRepository);
+    return view('admin/sections/entreprisesForm')->with('entreprises', $res);;
   }
 
 
@@ -68,6 +83,13 @@ class AdminController extends Controller
     $types_ContratsRepository->save(strtoupper ($request->input('description')));
     $res = $this->getTypes_Contrats($types_ContratsRepository);
     return view('admin/sections/typesContratsForm')->with('types_Contrats', $res);
+  }
+
+  public function postDomaines(DomaineRequest $request, DomainesRepository $domainesRepository)
+  {
+    $domainesRepository->save(strtoupper ($request->input('nom')));
+    $res = $this->getDomaines($domainesRepository);
+    return view('admin/sections/domainesForm')->with('domaines', $res);
   }
 
 }

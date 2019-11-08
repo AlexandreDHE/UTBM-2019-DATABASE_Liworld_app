@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Domaines;
+use Illuminate\Support\Facades\DB;
 
 class DomainesRepository implements DomainesRepositoryInterface
 {
@@ -14,14 +15,27 @@ class DomainesRepository implements DomainesRepositoryInterface
         $this->domaines = $domaines;
     }
 
-    public function save()
+    public function save($nom)
     {
-
+        $this->domaines->nom = $nom;
+        $this->domaines->save();
     }
 
     public function getData()
     {
+        $res = array(array());
+        $req = DB::table('domaines')->select('nom')->get();
+        
+        $i = 0;
+    
+        foreach ($req as $req) {
+            $res[$i+1] = $req->nom;
+            $i++;
+        }
 
+        $res[0] = $i ;
+    
+        return $res;
     }
 
 
