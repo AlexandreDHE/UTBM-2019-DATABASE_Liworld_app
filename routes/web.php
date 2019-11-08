@@ -18,10 +18,26 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/entreprise', 'AdminController@index_entreprise')->name('admin');
-Route::post('/entreprise', 'AdminController@postFormEntreprise')->name('entrepriseFORM');
 
-Route::get('/typePoste', 'AdminController@index_typePoste')->name('adminnistrateur');
-Route::post('/typePoste', 'AdminController@postFormTypePoste')->name('typePosteFORM');
+Route::get('/entreprises', 'AdminController@index_entreprise')->name('entreprises');
+Route::get('/typesContrats', 'AdminController@index_types_Contrats')->name('typesContrats');
+
+
+Route::post('/entreprises', 'AdminController@postFormEntreprise')->name('entrepriseFORM');
+Route::post('/typesContrats', 'AdminController@postTypes_Contrats')->name('typesContratsFORM');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/experience', 'ExperienceProController@index')->name('experiencePro');

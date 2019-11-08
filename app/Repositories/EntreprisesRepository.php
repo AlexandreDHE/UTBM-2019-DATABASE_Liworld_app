@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\DB;
 use App\Entreprises;
 
 class EntreprisesRepository implements EntreprisesRepositoryInterface
@@ -32,13 +33,15 @@ class EntreprisesRepository implements EntreprisesRepositoryInterface
         $i = 0;
     
         foreach ($req as $req) {
-            $res[$i][0] = $req->nom;
-            $res[$i][1] = $req->numeroVoie;
-            $res[$i][2] = $req->rue;
-            $res[$i][3] = $req->ville;
-            $res[$i][4] = $req->codePostale;
+            $res[$i+1][0] = $req->nom;
+            $res[$i+1][1] = $req->numeroVoie;
+            $res[$i+1][2] = $req->rue;
+            $res[$i+1][3] = $req->ville;
+            $res[$i+1][4] = $req->codePostale;
             $i++;
         }
+
+        $res[0] = $i ;
     
         return $res;
     }

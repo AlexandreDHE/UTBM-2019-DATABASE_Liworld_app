@@ -4,6 +4,6 @@ namespace App\Repositories;
 
 interface Types_ContratsRepositoryInterface
 {
-    public function save();
+    public function save($description);
     public function getData();
 }

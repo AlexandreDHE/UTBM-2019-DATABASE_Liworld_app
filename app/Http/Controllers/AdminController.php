@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\EntreprisesRepository;
+use App\Repositories\Types_ContratsRepository;
 
 use App\Http\Requests\EntrepriseRequest; 
 use App\Http\Requests\TypePosteRequest;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
+
 
 class AdminController extends Controller
 {
@@ -21,18 +22,33 @@ class AdminController extends Controller
 /* GET -- AFFICHAGE DES VUES */
 /*****************************/
 
-  public function index_entreprise()
+  public function index_entreprise(EntreprisesRepository $entreprisesRepository)
   {
-
-      return view('admin/sections/entrepriseForm');
+    $res = array(array());
+    $res = $this->getEntreprise($entreprisesRepository);
+    return view('admin/sections/entreprisesForm')->with('entreprises', $res);
 
   }
 
-  public function index_typePoste()
+  public function index_types_Contrats(Types_ContratsRepository $types_ContratsRepository)
   {
-    $typePoste = array(array());
-    $typePoste = $this->getDataTypePoste();
-    return view('admin/sections/typePosteForm')->with('typePoste', $typePoste);
+    $res = array(array());
+    $res = $this->getTypes_Contrats($types_ContratsRepository);
+    return view('admin/sections/typesContratsForm')->with('types_Contrats', $res);
+  }
+
+/***************************************/
+/* GET -- FORMULAIRE D'ADMINISTRATION  */
+/***************************************/
+
+  public function getEntreprise(EntreprisesRepository $entreprisesRepository)
+  {
+    return $entreprisesRepository->getData();
+  }
+
+  public function getTypes_Contrats(Types_ContratsRepository $types_ContratsRepository)
+  {
+    return $types_ContratsRepository->getData();
   }
 
 /***************************************/
@@ -41,110 +57,17 @@ class AdminController extends Controller
 
   public function postFormEntreprise(EntrepriseRequest $request, EntreprisesRepository $entreprisesRepository)
   {
-      $entreprisesRepository->save("Liworld", "17", "allé des chenes", "Boissise le roi", "77310");
-      return view('admin/sections/entrepriseForm');
+      $entreprisesRepository->save(strtoupper ($request->input('nom')),$request->input('numeroVoie'), strtoupper ($request->input('rue')), strtoupper ($request->input('ville')), strtoupper ($request->input('codePostale')));
+      $res = $this->getEntreprise($entreprisesRepository);
+      return view('admin/sections/entreprisesForm')->with('entreprises', $res);;
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  public function postFormTypePoste(EntrepriseRequest $request)
+  public function postTypes_Contrats(TypePosteRequest $request, Types_ContratsRepository $types_ContratsRepository)
   {
-      $table = new TypePoste;
-      $table->description = $request->input('nom');
-      $table->save();
-
-      $typePoste = array(array());
-      $typePoste = $this->getDataTypePoste();
-      return view('admin/sections/typePosteForm')->with('typePoste', $typePoste);
-  }
-
-
-
-
-
-
-
-
-
-
-
-  
-  public function getDataTypePoste()
-  {
-    $res = array(array());
-    $req = DB::table('typesPostes')->select('description')->get();
-    $i = 0;
-
-    foreach ($req as $req) {
-        $res[$i][0] = $req->description;
-        $i++;
-    }
-
-    return $res;
+    $types_ContratsRepository->save(strtoupper ($request->input('description')));
+    $res = $this->getTypes_Contrats($types_ContratsRepository);
+    return view('admin/sections/typesContratsForm')->with('types_Contrats', $res);
   }
 
 }

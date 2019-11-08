@@ -15,7 +15,7 @@ class Entreprises extends Migration
     {
       Schema::create('entreprises', function (Blueprint $table) {
           $table->bigIncrements('id');
-          $table->char('nom', 200);
+          $table->char('nom', 200)->unique();
           $table->integer('numeroVoie');
           $table->char('rue', 200);
           $table->char('ville', 200);
