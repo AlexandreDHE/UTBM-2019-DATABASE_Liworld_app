@@ -14,6 +14,7 @@ class EntreprisesDomaines extends Migration
     public function up()
     {
         Schema::create('entreprises_domaines', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->integer('id_entreprise');
             $table->foreign('id_entreprise')->references('id')->on('entreprises');
             $table->integer('id_domaine');

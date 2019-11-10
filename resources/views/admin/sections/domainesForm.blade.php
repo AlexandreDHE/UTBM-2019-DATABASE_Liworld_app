@@ -56,7 +56,7 @@
                 <tbody>
                     @for ($i = 0; $i < count($domaines)-1; $i++)
                         <tr>
-                            <td scope="col">{{$domaines[$i+1]}}</td>
+                            <td scope="col">{{$domaines[$i+1][0]}}</td>
                         </tr>
                     @endfor
                 </tbody>

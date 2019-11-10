@@ -6,6 +6,7 @@ interface EntreprisesRepositoryInterface
 {
     public function save($nom, $numeroVoie, $rue, $ville, $codePostale);
     public function getData();
+    public function getID($nom);
 }
 
 

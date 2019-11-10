@@ -27,6 +27,19 @@
                     </div>
                 </div>
 
+
+                <div class="form-group row">
+                    <label for="numeroVoie" class="col-md-4 col-form-label text-md-right">{{ __('Domaine') }}</label>
+                    <div class="col-md-6">
+                        <select id="domaines" name="domaines[]" class="custom-select" id="domaines" multiple>
+                            @for ($i = 0; $i < count($domaines)-1; $i++)
+                            <option value={{$domaines[$i+1][1]}}>{{$domaines[$i+1][0]}}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+
+
                 <div class="form-group row">
                     <label for="numeroVoie" class="col-md-4 col-form-label text-md-right">{{ __('Numéro de voie') }}</label>
                     <div class="col-md-6">

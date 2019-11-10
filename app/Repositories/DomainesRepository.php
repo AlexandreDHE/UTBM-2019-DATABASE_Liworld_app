@@ -24,12 +24,13 @@ class DomainesRepository implements DomainesRepositoryInterface
     public function getData()
     {
         $res = array(array());
-        $req = DB::table('domaines')->select('nom')->get();
+        $req = DB::table('domaines')->select( 'nom', 'id')->get();
         
         $i = 0;
     
         foreach ($req as $req) {
-            $res[$i+1] = $req->nom;
+            $res[$i+1][0] = $req->nom;
+            $res[$i+1][1] = $req->id;
             $i++;
         }
 

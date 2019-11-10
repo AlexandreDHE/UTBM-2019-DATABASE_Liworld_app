@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\EntreprisesRepository;
 use App\Repositories\Types_ContratsRepository;
 use App\Repositories\DomainesRepository;
+use App\Repositories\Entreprises_DomainesRepository;
 
 use App\Http\Requests\EntrepriseRequest; 
 use App\Http\Requests\TypePosteRequest;
@@ -18,19 +19,20 @@ class AdminController extends Controller
 
   public function __construct()
   {
-      $this->middleware('auth');
+    $this->middleware('auth');
   }
 
 /*****************************/
 /* GET -- AFFICHAGE DES VUES */
 /*****************************/
 
-  public function index_entreprise(EntreprisesRepository $entreprisesRepository)
+  public function index_entreprise(EntreprisesRepository $entreprisesRepository, DomainesRepository $domainesRepository)
   {
-    $res = array(array());
-    $res = $this->getEntreprises($entreprisesRepository);
-    return view('admin/sections/entreprisesForm')->with('entreprises', $res);
-
+    $res1 = array(array());
+    $res1 = $this->getEntreprises($entreprisesRepository);
+    $res2 = array(array());
+    $res2 = $this->getDomaines($domainesRepository);
+    return view('admin/sections/entreprisesForm')->with('entreprises', $res1)->with('domaines', $res2);
   }
 
   public function index_types_Contrats(Types_ContratsRepository $types_ContratsRepository)
@@ -70,11 +72,17 @@ class AdminController extends Controller
 /* POST -- FORMULAIRE D'ADMINISTRATION */
 /***************************************/
 
-  public function postFormEntreprise(EntrepriseRequest $request, EntreprisesRepository $entreprisesRepository)
+  public function postFormEntreprise(EntrepriseRequest $request, EntreprisesRepository $entreprisesRepository, DomainesRepository $domainesRepository, Entreprises_DomainesRepository $entreprises_Domaines) 
   {
     $entreprisesRepository->save(strtoupper ($request->input('nom')),$request->input('numeroVoie'), strtoupper ($request->input('rue')), strtoupper ($request->input('ville')), strtoupper ($request->input('codePostale')));
     $res = $this->getEntreprises($entreprisesRepository);
-    return view('admin/sections/entreprisesForm')->with('entreprises', $res);;
+    $idEntreprise = $entreprisesRepository->getID(strtoupper ($request->input('nom')));
+    $entreprises_Domaines->save($idEntreprise, $request->input('domaines') );
+
+    $res2 = array(array());
+    $res2 = $this->getDomaines($domainesRepository);
+
+    return view('admin/sections/entreprisesForm')->with('entreprises', $res)->with('domaines', $res2);
   }
 
 
