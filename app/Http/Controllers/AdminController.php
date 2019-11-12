@@ -77,7 +77,17 @@ class AdminController extends Controller
     $entreprisesRepository->save(strtoupper ($request->input('nom')),$request->input('numeroVoie'), strtoupper ($request->input('rue')), strtoupper ($request->input('ville')), strtoupper ($request->input('codePostale')));
     $res = $this->getEntreprises($entreprisesRepository);
     $idEntreprise = $entreprisesRepository->getID(strtoupper ($request->input('nom')));
-    $entreprises_Domaines->save($idEntreprise, $request->input('domaines') );
+
+
+    $id_domaine = $request->input('domaines');
+
+    for ($i = 0; $i<count($id_domaine); $i++){
+      echo((int) $id_domaine[$i]);
+      $entreprises_Domaines->save((int) $idEntreprise, (int) $id_domaine[$i] );
+    }
+
+
+   
 
     $res2 = array(array());
     $res2 = $this->getDomaines($domainesRepository);

@@ -16,9 +16,9 @@ class EntreprisesDomaines extends Migration
         Schema::create('entreprises_domaines', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_entreprise');
-            $table->foreign('id_entreprise')->references('id')->on('entreprises');
+            $table->foreign('id_entreprise')->references('id')->on('entreprises')->onDelete('cascade');
             $table->integer('id_domaine');
-            $table->foreign('id_domaine')->references('id')->on('domaines');
+            $table->foreign('id_domaine')->references('id')->on('domaines')->onDelete('cascade');
         });
     }
 

@@ -32,4 +32,5 @@ class Entreprises extends Migration
     {
         Schema::dropIfExists('entreprises');
     }
+    
 }

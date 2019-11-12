@@ -17,12 +17,10 @@ class Entreprises_DomainesRepository implements Entreprises_DomainesRepositoryIn
 
     public function save($id_entreprise, $id_domaine)
     {
-
-        for ($i = 0; $i<count($id_domaine); $i++){
-            $this->entreprises_domaines->id_entreprise = (int) $id_entreprise;
-            $this->entreprises_domaines->id_domaine = (int) $id_domaine[$i];
-            $this->entreprises_domaines->save();
-        }
+        $this->entreprises_domaines = new Entreprises_Domaines;
+        $this->entreprises_domaines->id_entreprise = $id_entreprise;
+        $this->entreprises_domaines->id_domaine = $id_domaine;
+        $this->entreprises_domaines->save();
     }
 
     public function getData()

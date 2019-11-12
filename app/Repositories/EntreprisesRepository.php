@@ -17,6 +17,7 @@ class EntreprisesRepository implements EntreprisesRepositoryInterface
 
     public function save($nom, $numeroVoie, $rue, $ville, $codePostale)
     {
+        $this->entreprises = new Entreprises;
         $this->entreprises->nom = $nom;
         $this->entreprises->numeroVoie = $numeroVoie;
         $this->entreprises->rue = $rue;

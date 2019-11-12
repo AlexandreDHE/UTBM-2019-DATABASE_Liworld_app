@@ -8,4 +8,5 @@ class Entreprises extends Model
 {
     protected $table = 'entreprises';
     public $timestamps = false;
+
 }

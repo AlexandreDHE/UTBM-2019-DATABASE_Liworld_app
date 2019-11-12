@@ -17,6 +17,7 @@ class DomainesRepository implements DomainesRepositoryInterface
 
     public function save($nom)
     {
+        $this->domaines = new Domaines;
         $this->domaines->nom = $nom;
         $this->domaines->save();
     }
@@ -38,6 +39,5 @@ class DomainesRepository implements DomainesRepositoryInterface
     
         return $res;
     }
-
 
 }
