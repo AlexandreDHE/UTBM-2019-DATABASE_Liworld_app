@@ -24,13 +24,13 @@ class ExperiencesProfessionnelles extends Migration
           $table->foreign('id_entreprise')->references('id')->on('entreprises');
           $table->char('nomPoste', 200);
           $table->date('dateDebut');
-          $table->date('dateFin');
-          $table->string('description');
+          $table->date('dateFin')->nullable();
+          $table->string('description')->nullable();
 
-          $table->integer('numeroVoie');
-          $table->char('rue', 200);
-          $table->char('ville', 200);
-          $table->integer('codePostale');
+          $table->integer('numeroVoie')->nullable();
+          $table->char('rue', 200)->nullable();
+          $table->char('ville', 200)->nullable();
+          $table->integer('codePostale')->nullable();
 
       });
     }

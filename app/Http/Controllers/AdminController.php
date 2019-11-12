@@ -82,7 +82,6 @@ class AdminController extends Controller
     $id_domaine = $request->input('domaines');
 
     for ($i = 0; $i<count($id_domaine); $i++){
-      echo((int) $id_domaine[$i]);
       $entreprises_Domaines->save((int) $idEntreprise, (int) $id_domaine[$i] );
     }
 
