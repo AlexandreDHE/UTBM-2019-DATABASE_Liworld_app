@@ -24,12 +24,13 @@ class Types_ContratsRepository implements Types_ContratsRepositoryInterface
     public function getData()
     {
         $res = array(array());
-        $req = DB::table('typesContrats')->select('description' )->get();
+        $req = DB::table('typesContrats')->select('description', 'id' )->get();
         
         $i = 0;
     
         foreach ($req as $req) {
-            $res[$i+1] = $req->description;
+            $res[$i+1][0] = $req->description;
+            $res[$i+1][1] = $req->id;
             $i++;
         }
 

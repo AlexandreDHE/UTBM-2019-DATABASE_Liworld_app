@@ -86,9 +86,6 @@ class AdminController extends Controller
       $entreprises_Domaines->save((int) $idEntreprise, (int) $id_domaine[$i] );
     }
 
-
-   
-
     $res2 = array(array());
     $res2 = $this->getDomaines($domainesRepository);
 

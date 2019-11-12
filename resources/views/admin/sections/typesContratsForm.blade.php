@@ -56,7 +56,7 @@
                 <tbody>
                     @for ($i = 0; $i < count($types_Contrats)-1; $i++)
                         <tr>
-                            <td scope="col">{{$types_Contrats[$i+1]}}</td>
+                            <td scope="col">{{$types_Contrats[$i+1][0]}}</td>
                         </tr>
                     @endfor
                 </tbody>
