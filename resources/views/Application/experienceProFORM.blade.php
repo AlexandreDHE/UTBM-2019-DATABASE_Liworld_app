@@ -58,7 +58,7 @@
 
                                 <div class="form-input">
                                     <label for="typeContrat" class="required">{{ __("Type d'emploi:") }}</label>
-                                    
+
                                     <select id="typeContrat" name="typeContrat" class="custom-select" id="typeContrat">
                                         @for ($i = 0; $i < count($types_Contrats)-1; $i++)
                                             <option value={{$types_Contrats[$i+1][1]}}>{{$types_Contrats[$i+1][0]}}</option>
@@ -190,11 +190,11 @@
     </div>
 
     <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/nouislider/nouislider.min.js"></script>
-    <script src="vendor/wnumb/wNumb.js"></script>
-    <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{URL::asset('experienceProFORM/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{URL::asset('experienceProFORM/vendor/nouislider/nouislider.min.js') }}"></script>
+    <script src="{{URL::asset('experienceProFORM/vendor/wnumb/wNumb.js') }}"></script>
+    <script src="{{URL::asset('experienceProFORM/vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script src="{{URL::asset('experienceProFORM/vendor/jquery-validation/dist/additional-methods.min.js') }}"></script>
+    <script src="{{URL::asset('experienceProFORM/js/main.js') }}"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

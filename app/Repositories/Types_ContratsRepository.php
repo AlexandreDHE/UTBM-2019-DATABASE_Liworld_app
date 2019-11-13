@@ -39,5 +39,11 @@ class Types_ContratsRepository implements Types_ContratsRepositoryInterface
         return $res;
     }
 
+    public function getTypeContrat($id)
+    {
+        $req = DB::table('typesContrats')->where('id', $id)->pluck('description');
+        return $req[0];
+    }
+
 
 }

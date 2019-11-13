@@ -55,9 +55,12 @@ class EntreprisesRepository implements EntreprisesRepositoryInterface
         return $req[0];
     }
 
+    public function getNOM($id)
+    {
+        $req = DB::table('entreprises')->where('id', $id)->pluck('nom');
+        return $req[0];
+    }
+
 
 }
 
-/*@for ($i = 0; $i < count($domaines)-1; $i++)
-                            <option value={{$domaines[$i+1]}}>{{$domaines[$i+1][0]}}</option>
-                            @endfor*/
