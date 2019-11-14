@@ -15,6 +15,7 @@ class Formations extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->boolean('dernierAjout')->default(false);
             $table->integer('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->char('ecole', 200);

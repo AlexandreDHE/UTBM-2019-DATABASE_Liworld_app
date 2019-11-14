@@ -14,6 +14,7 @@ class FormationsDomaines extends Migration
     public function up()
     {
         Schema::create('formations_domaines', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->integer('id_formations');
             $table->foreign('id_formations')->references('id')->on('formations');
             $table->integer('id_domaine');

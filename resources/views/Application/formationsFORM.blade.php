@@ -59,7 +59,11 @@
                                 <div class="form-input">
                                     <label for="typeContrat" class="required">{{ __("Domaines:") }}</label>
 
-                                    <select id="typeContrat" name="typeContrat" class="custom-select" id="typeContrat">
+                                    <select id="domaines" name="domaines[]" class="custom-select" id="domaines" multiple>
+                                        @for ($i = 0; $i < count($domaines)-1; $i++)
+                                        <option value={{$domaines[$i+1][1]}}>{{$domaines[$i+1][0]}}</option>
+                                        @endfor
+                                    </select>
                                         
                                     </select>
 
