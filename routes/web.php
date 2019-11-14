@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/user', 'ProfileController@index')->name('user');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/entreprises', 'AdminController@index_entreprise')->name('entreprises');
@@ -24,13 +26,13 @@ Route::get('/typesContrats', 'AdminController@index_types_Contrats')->name('type
 Route::get('/domaines', 'AdminController@index_domaines')->name('domaines');
 Route::get('/experiencePro', 'ExperienceProController@index_form')->name('experiencePro');
 Route::get('/fileActualité', 'FileActualieController@index')->name('fileActualité');
-
+Route::get('/formationform', 'FormationController@index_form')->name('formation');
 
 Route::post('/entreprises', 'AdminController@postFormEntreprise')->name('entrepriseFORM');
 Route::post('/typesContrats', 'AdminController@postTypes_Contrats')->name('typesContratsFORM');
 Route::post('/domaines', 'AdminController@postDomaines')->name('domainesFORM');
 Route::post('/experiencePro', 'ExperienceProController@postFormExperiencePro')->name('experienceProFORM');
-
+Route::post('/formationform', 'FormationController@postFormFormation')->name('formationFORM');
 
 
 

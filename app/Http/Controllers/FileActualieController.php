@@ -29,16 +29,5 @@ class FileActualieController extends Controller
 
         return view('Application/fileActualite')->with('res', $res1);
     }
-
-/*****************************/
-/* GET -- AFFICHAGE DES VUES */
-/*****************************/
-
-    public function getEntreprises(Experiences_professionnellesRepository $experiences_professionnellesRepository)
-    {
-        
-        return $entreprisesRepository->getData();
-    }
-
-
+    
 }

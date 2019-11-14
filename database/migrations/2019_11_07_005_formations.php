@@ -20,9 +20,9 @@ class Formations extends Migration
             $table->char('ecole', 200);
             $table->char('diplome', 200);
             $table->date('dateDebut');
-            $table->date('dateFin');
-            $table->char('resultat', 200);
-            $table->string('description');
+            $table->date('dateFin')->nullable();
+            $table->char('resultat', 200)->nullable();
+            $table->string('description')->nullable();
         });
     }
 
