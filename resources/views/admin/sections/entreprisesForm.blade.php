@@ -1,7 +1,8 @@
+@extends('Application/admin')
 
-@extends('admin.adminLayout')
+@section('content')
 
-@section('entreprise')
+<main class="container mt-5" role="main">
 <div class="card-body">
 
     @if (session('status'))
@@ -131,5 +132,5 @@
             </table>
         @endif
     </div>
-
+</main>
 @endsection

@@ -1,6 +1,8 @@
-@extends('admin.adminLayout')
+@extends('Application/admin')
 
-@section('typePoste')
+@section('content')
+
+<main class="container mt-5" role="main">
 <div class="card-body">
 
     @if (session('status'))
@@ -65,4 +67,5 @@
     </div>
 
 </div>
+</main>
 @endsection

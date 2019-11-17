@@ -17,6 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
+Route::get('/admin', 'AdminController@home')->name('homeAdmin');
+
+
+
+
 Route::get('/user', 'ProfileController@index')->name('user');
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -27,6 +34,11 @@ Route::get('/domaines', 'AdminController@index_domaines')->name('domaines');
 Route::get('/experiencePro', 'ExperienceProController@index_form')->name('experiencePro');
 Route::get('/fileActualité', 'FileActualieController@index')->name('fileActualité');
 Route::get('/formationform', 'FormationController@index_form')->name('formation');
+Route::get('/autocomplete', 'AjouterConnexionController@search');
+
+Route::post('/profil', 'AjouterConnexionController@showProfil')->name('searchProfil');
+
+
 
 Route::post('/entreprises', 'AdminController@postFormEntreprise')->name('entrepriseFORM');
 Route::post('/typesContrats', 'AdminController@postTypes_Contrats')->name('typesContratsFORM');

@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'LIWORLD') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -19,7 +16,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
@@ -27,6 +24,10 @@
 
     <!-- (Optional) Latest compiled and minified JavaScript translation files -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
     <div id="app">
@@ -58,32 +59,84 @@
                                 @endif
                             </li>
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                            <a class="navbar-brand font-weight-bold h5" href="#">{{Auth::user()->firstName }} {{ Auth::user()->name}} </a>
+                            
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarCollapse">
+                                <ul class="navbar-nav mr-auto">
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                    <li class="nav-item active">
+                            
+                                        <a class="nav-link text-danger font-weight-bold h5" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                
+                                    </li>
+
+                                    <li class="nav-item active h5">
+                                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+
+                                    </li>
+                                    <li class="nav-item h5">
+                                        <form class="form-inline mt-2 mt-md-0" method="GET" class="register-form" action="{{ route('homeAdmin') }}">
+                                            @csrf
+                                            <button class="btn btn-outline-dark my-2 my-sm-0 ml-3" type="submit">Administration du site</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                                
+                                <form class="form-inline mt-2 mt-md-0" method="POST" class="register-form" action="{{ route('searchProfil') }}">
+                                    @csrf
+                                    <input id="search" name="search" type="text" class="form-control" placeholder="Trouver un utilisateur"/>   
+                                    <button class="btn btn-outline-warning my-2 my-sm-0 ml-3" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
             @yield('content')
-        </main>
     </div>
 </body>
 </html>
+
+<script>
+ $(document).ready(function() {
+    $( "#search" ).autocomplete({
+ 
+        source: function(request, response) {
+            $.ajax({
+            url: "{{url('autocomplete')}}",
+            data: {
+                    term : request.term
+             },
+            dataType: "json",
+            success: function(data){
+               var resp = $.map(data,function(obj){
+                    //console.log(obj.city_name);
+                    return obj.name;
+               }); 
+ 
+               response(resp);
+            }
+        });
+    },
+    minLength: 1
+ });
+});
+ 
+</script>   
