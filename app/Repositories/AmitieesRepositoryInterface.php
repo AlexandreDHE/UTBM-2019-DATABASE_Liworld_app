@@ -8,4 +8,5 @@ interface AmitieesRepositoryInterface
     public function getData();
     public function sommesNousConnecte($id_user1, $id_user2);
     public function annuler($id_user1, $id_user2);
+    public function confirmerUneConnexion($id_user1, $id_user2, $note_user2);
 }

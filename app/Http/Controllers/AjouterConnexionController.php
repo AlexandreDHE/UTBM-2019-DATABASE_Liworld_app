@@ -16,18 +16,17 @@ class AjouterConnexionController extends Controller
 
   private $variable;  
 
-    public function __construct()
-    {
-      
-    $this->middleware('auth');
-    }
+  public function __construct()
+  {
+    
+  $this->middleware('auth');
+  }
 
   public function search(Request $request)
   {
     $search = $request->get('term');
     $result = User::where('name', 'LIKE', '%'. $search. '%')->get();
     return response()->json($result);
-            
   } 
 
   public function showProfil(SearchRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
@@ -45,6 +44,13 @@ class AjouterConnexionController extends Controller
 
   public function annulerUneConnexion(SearchRequest $request1, ProfilRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
     $amitieesRepository->annuler(Auth::id(),$request->input('id_user2'));
+    $res = $usersRepository->getDataID($request->input('id_user2'));
+    $conencte = $amitieesRepository->sommesNousConnecte(Auth::id(), $res[0]);
+    return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte);
+  }
+
+  public function confirmerUneConnexion(SearchRequest $request1, ProfilRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
+    $amitieesRepository->confirmerUneConnexion(Auth::id(),$request->input('id_user2'), $request->input('note'));
     $res = $usersRepository->getDataID($request->input('id_user2'));
     $conencte = $amitieesRepository->sommesNousConnecte(Auth::id(), $res[0]);
     return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte);

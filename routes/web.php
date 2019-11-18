@@ -34,6 +34,8 @@ Route::get('/domaines', 'AdminController@index_domaines')->name('domaines');
 Route::get('/experiencePro', 'ExperienceProController@index_form')->name('experiencePro');
 Route::get('/fileActualité', 'FileActualieController@index')->name('fileActualité');
 Route::get('/formationform', 'FormationController@index_form')->name('formation');
+
+
 Route::get('/autocomplete', 'AjouterConnexionController@search');
 
 Route::post('/profil', 'AjouterConnexionController@showProfil')->name('searchProfil');
@@ -48,6 +50,8 @@ Route::post('/formationform', 'FormationController@postFormFormation')->name('fo
 
 Route::get('/user', 'AjouterConnexionController@ajouterUneConnexion')->name('ajouterUneConnexion');
 Route::get('/delete', 'AjouterConnexionController@annulerUneConnexion')->name('annulerUneConnexion');
+
+Route::get('/confirmer', 'AjouterConnexionController@confirmerUneConnexion')->name('confirmerUneConnexion');
 
 
 
