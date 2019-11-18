@@ -85,8 +85,10 @@
                                     </li>
 
                                     <li class="nav-item active h5">
-                                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-
+                                        <form class="form-inline mt-2 mt-md-0" method="GET" class="register-form" action="{{ route('home') }}">
+                                            @csrf
+                                            <button class="btn btn-outline-secondary my-2 my-sm-0 ml-3 mt-4" type="submit">Home</button>
+                                        </form>
                                     </li>
                                     <li class="nav-item h5">
                                         <form class="form-inline mt-2 mt-md-0" method="GET" class="register-form" action="{{ route('homeAdmin') }}">
@@ -98,7 +100,7 @@
                                 
                                 <form class="form-inline mt-2 mt-md-0" method="POST" class="register-form" action="{{ route('searchProfil') }}">
                                     @csrf
-                                    <input id="search" name="search" type="text" class="form-control" placeholder="Trouver un utilisateur"/>   
+                                    <input id="search" name="search" type="text" class="form-control" placeholder="Trouver un utilisateur" required/>   
                                     <button class="btn btn-outline-warning my-2 my-sm-0 ml-3" type="submit">Search</button>
                                 </form>
                             </div>

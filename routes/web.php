@@ -46,6 +46,9 @@ Route::post('/domaines', 'AdminController@postDomaines')->name('domainesFORM');
 Route::post('/experiencePro', 'ExperienceProController@postFormExperiencePro')->name('experienceProFORM');
 Route::post('/formationform', 'FormationController@postFormFormation')->name('formationFORM');
 
+Route::get('/user', 'AjouterConnexionController@ajouterUneConnexion')->name('ajouterUneConnexion');
+Route::get('/delete', 'AjouterConnexionController@annulerUneConnexion')->name('annulerUneConnexion');
+
 
 
 
