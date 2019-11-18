@@ -36,14 +36,12 @@ class AmitieesRepository implements AmitieesRepositoryInterface
        
     }
 
-
     public function confirmerUneConnexion($id_user1, $id_user2, $note_user2){
         DB::table('amitiees')->where('id_user1','=', $id_user2)->where('id_user2','=', $id_user1)->update(['note_user2' => $note_user2]);
     }
 
     public function sommesNousConnecte($id_user1, $id_user2){
 
-        
         $res = DB::table('amitiees')->where('id_user1','=', $id_user1)->where('id_user2','=', $id_user2)->exists();
         $res2 = DB::table('amitiees')->where('id_user1','=', $id_user2)->where('id_user2','=', $id_user1)->exists();
 
@@ -59,10 +57,10 @@ class AmitieesRepository implements AmitieesRepositoryInterface
                     return 2; // Les personnes sont connectées entre elles
                 }
             }
-
         }else{
             return -1; // Pas de lien d'amitié
         }
+
     }
 
 
