@@ -111,11 +111,12 @@
                 </div>
               </div>
 
-              <!-- EXPEROENCE   --> 
+            @for ($i = 0; $i < count($res)-1; $i++)
+              <!-- EXPERIENCE   --> 
               <div class="card-body secondary">
                 <div class="my-3 p-3 bg-white rounded shadow-sm ">
                   <div class="row bg-dark mb-2 rounded">
-                    <h4 class="pl-3 pt-3 border-bottom border-gray pb-2 mb-0 text-white">MBDA missile systems</h4>
+                    <h4 class="pl-3 pt-3 border-bottom border-gray pb-2 mb-0 text-white">{{$res[$i+1][1]}}</h4>
                   </div>
 
                   <div class="media text-muted pt-3">
@@ -126,9 +127,9 @@
                       <div class="col-10">
                         <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
                           <strong class="d-block text-dark">ADRESSE</strong>
-                          1 Avenue Réaumur<br>
-                          92350<br>
-                          Le Plessis-Robinson
+                          {{$res[$i+1][6]}} {{$res[$i+1][7]}}<br>
+                          {{$res[$i+1][9]}}<br>
+                          {{$res[$i+1][8]}}
                         </p>
                       </div>
                     </div>
@@ -147,7 +148,7 @@
                     <div class="col-2">
                       <div class="media text-muted pt-3">
                         <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
-                          <strong class="d-block text-dark">Contrat:</strong>CDD
+                          <strong class="d-block text-dark">Contrat:</strong>{{$res[$i+1][0]}}
                         </p>
                       </div>
                     </div>
@@ -155,7 +156,7 @@
                     <div class="col-2">
                       <div class="media text-muted pt-3">
                         <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
-                          <strong class="d-block text-dark">Date de début:</strong>01/04/2019
+                          <strong class="d-block text-dark">Date de début:</strong>{{$res[$i+1][3]}}
                         </p>
                       </div>
                     </div>
@@ -163,7 +164,7 @@
                     <div class="col-2">
                       <div class="media text-muted pt-3">
                         <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
-                          <strong class="d-block text-dark">Date de fin:</strong>15/06/2019
+                          <strong class="d-block text-dark">Date de fin:</strong>{{$res[$i+1][4]}}
                         </p>
                       </div>
                     </div>
@@ -172,10 +173,10 @@
                       <div class="row ">
                         <div class="col-sm">
                           <div class="row bg-secondary rounded">
-                            <h4 class="pl-2 pt-3 d-block text-white "><b>Poste:</b> Stagiaire en informatique</h4>
+                            <h4 class="pl-2 pt-3 d-block text-white "><b>Poste:</b>{{$res[$i+1][2]}}</h4>
                           </div>
                           <div class="row">
-                            <p style="font-size: 16px;" class="pl-2 pt-3 d-block text-dark ">Stage de fin de DUT</p>
+                            <p style="font-size: 16px;" class="pl-2 pt-3 d-block text-dark ">{{$res[$i+1][5]}}</p>
                           </div>
                         </div>
                       </div>
@@ -183,6 +184,7 @@
                   </div>
                 </div>
                 <!-- FIN -->
+              @endfor
                 
             </div>
           </div>

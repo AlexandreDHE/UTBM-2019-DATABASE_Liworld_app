@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SearchRequest;
 use App\Http\Requests\ProfilRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use App\Repositories\Experiences_professionnellesRepository;
+
 use App\Repositories\UsersRepository;
 use App\Repositories\AmitieesRepository;
+use App\Repositories\DomainesRepository;
+use App\Repositories\Types_ContratsRepository;
+use App\Repositories\EntreprisesRepository;
+
+use App\Http\Controllers\FileActualieController;
+
+
 use App\User;
 
 class AjouterConnexionController extends Controller
@@ -29,10 +37,22 @@ class AjouterConnexionController extends Controller
     return response()->json($result);
   } 
 
-  public function showProfil(SearchRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
+  public function showProfil(Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository,SearchRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
     $res = $usersRepository->getData($request->input('search'));
     $conencte = $amitieesRepository->sommesNousConnecte(Auth::id(), $res[0]);
-    return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte);
+
+    $res1 = $experiences_professionnellesRepository->getData($res[0]);
+
+        for ($i = 0; $i < count($res1)-1; $i++){
+            $res1[$i+1][0] = $types_ContratsRepository->getTypeContrat((int) $res1[$i+1][0]);
+            $res1[$i+1][1] = $entreprisesRepository->getNOM((int) $res1[$i+1][1]);
+        }
+
+        echo $res[2][4];
+
+
+
+    return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte)->with('res', $res1);
   }
 
   public function ajouterUneConnexion(SearchRequest $request1, ProfilRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
