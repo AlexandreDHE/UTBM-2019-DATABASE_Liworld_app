@@ -104,10 +104,7 @@
                   <img src="{{ asset('images/exppro.png') }}" width="100%" class="mx-auto d-block" alt="Responsive image"> 
                 </div>
                 <div class="col-7">
-                  <h1 class="pt-5 text-white ">Expériences professionnelles</h1>
-                </div>
-                <div class="col-2">
-                  <button type="button" class="btn btn-sm btn-outline-secondary mx-auto mt-4">Nouvelle experience</button>
+                  <h1 class="pt-5 text-white "></b>Expériences professionnelles</b></h1>
                 </div>
               </div>
 
@@ -172,8 +169,8 @@
                     <div class="col-11 mx-auto  rounded mt-4">
                       <div class="row ">
                         <div class="col-sm">
-                          <div class="row bg-secondary rounded">
-                            <h4 class="pl-2 pt-3 d-block text-white "><b>Poste:</b>{{$res[$i+1][2]}}</h4>
+                          <div style="background-color:#85aabd;" class="row rounded">
+                            <h4 class="pl-2 pt-3 d-block text-dark "><b>Poste:</b> {{$res[$i+1][2]}}</h4>
                           </div>
                           <div class="row">
                             <p style="font-size: 16px;" class="pl-2 pt-3 d-block text-dark ">{{$res[$i+1][5]}}</p>
@@ -183,8 +180,36 @@
                     </div>
                   </div>
                 </div>
-                <!-- FIN -->
+              </div>
+              <!-- FIN -->
               @endfor
+                
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+
+
+    <!-- --------------------------------------------------------------------------------------------------- -->
+    
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row ">
+          <div class="col-md-12">
+            <div class="card mb-4 shadow-sm">
+
+              <div style="background-color:#eda628;" class=" p-2 row rounded">
+                <div class="col-2">
+                  <img src="{{ asset('images/formation.png') }}" width="100%" class="mx-auto d-block" alt="Responsive image"> 
+                </div>
+                <div class="col-7">
+                  <h1 class="pt-5 text-dark "><b>Formations</b></h1>
+                </div>
+              </div>
+
+            
                 
             </div>
           </div>

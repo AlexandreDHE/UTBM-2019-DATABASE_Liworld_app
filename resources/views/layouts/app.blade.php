@@ -61,8 +61,12 @@
                         @else
 
                         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                            <a class="navbar-brand font-weight-bold h5" href="#">{{Auth::user()->firstName }} {{ Auth::user()->name}} </a>
-                            
+                        <form class="form-inline mt-2 mt-md-0" method="GET" class="register-form" action="{{ route('showMyProfil') }}">
+                            <button type="submit" class="btn btn-lg btn-dark">
+                                {{Auth::user()->firstName }} {{ Auth::user()->name}} 
+                            </button>
+                        </form>
+                                
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
