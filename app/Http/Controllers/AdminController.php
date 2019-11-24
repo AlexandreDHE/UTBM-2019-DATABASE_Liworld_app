@@ -26,6 +26,12 @@ class AdminController extends Controller
 /* GET -- AFFICHAGE DES VUES */
 /*****************************/
 
+
+  public function home ()
+  {
+    return view('Application/admin');
+  }
+
   public function index_entreprise(EntreprisesRepository $entreprisesRepository, DomainesRepository $domainesRepository)
   {
     $res1 = array(array());

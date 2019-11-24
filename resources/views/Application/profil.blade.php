@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <main class="container mt-5" role="main">
   <div class="container"> 
 
@@ -209,8 +210,6 @@
                 </div>
               </div>
 
-            
-                
             </div>
           </div>
         </div> 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SearchRequest;
 use App\Http\Requests\ProfilRequest;
 use App\Http\Requests\ExperienceProRequest; 
+use App\Http\Requests\PublicationRequest; 
 
 use App\Repositories\Experiences_professionnellesRepository;
 use App\Repositories\UsersRepository;
@@ -14,7 +15,7 @@ use App\Repositories\AmitieesRepository;
 use App\Repositories\DomainesRepository;
 use App\Repositories\Types_ContratsRepository;
 use App\Repositories\EntreprisesRepository;
-
+use App\Repositories\PublicationRepository;
 
 use App\User;
 
@@ -163,6 +164,7 @@ class ProfilController extends Controller
       $res1 = $domainesRepository->getData();
       return view('Application/formationsFORM')->with('domaines', $res1);
   }
+
 
 
 

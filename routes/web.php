@@ -28,7 +28,8 @@ Route::post('/domaines', 'AdminController@postDomaines')->name('domainesFORM');
 
 
 
-
+Route::get('/redigerPublication', 'HomeController@redigerPublicationFORM')->name('redigerPublicationFORM');
+Route::get('/postPublication', 'HomeController@postFormPublication')->name('postFormPublication');
 
 
 Route::get('/autocomplete', 'ProfilController@search');
