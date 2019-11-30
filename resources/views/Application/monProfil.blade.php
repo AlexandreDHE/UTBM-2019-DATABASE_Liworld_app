@@ -49,7 +49,7 @@
                 <div class="card-body secondary">
                 <div class="my-3 p-3 bg-white rounded shadow-sm ">
                     <div class="row bg-dark mb-2 rounded">
-                    <h4 class="pl-3 pt-3 border-bottom border-gray pb-2 mb-0 text-white">{{$res[$i+1][1]}}</h4>
+                        <h4 class="pl-3 pt-3 border-bottom border-gray pb-2 mb-0 text-white">{{$res[$i+1][1]}}</h4>
                     </div>
 
                     <div class="media text-muted pt-3">

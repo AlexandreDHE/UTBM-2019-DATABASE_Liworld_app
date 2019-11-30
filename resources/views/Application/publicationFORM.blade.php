@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="container mt-5" role="main">
 
-    <div style="background-color:#eda628;" class="jumbotron  text-dark">
+<div style="background-color:#eda628;" class="jumbotron  text-dark">
         <div class="container ">
             <h1 class="display-5"><br><b> Dites-nous tous !</b> Nous allons informer votre réseau. </h1>
         </div>
     </div>
+    
+<main class="container mt-5" role="main">
+
+    
 
   <div class="container"> 
 

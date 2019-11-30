@@ -28,27 +28,53 @@ class PublicationRepository implements PublicationRepositoryInterface
 
     public function showPublications($myId){
  
-        $res = array(array());
-        $req = DB::table('publication')
-        ->join('amitiees', 'publication.id_user','=', 'amitiees.id_user1')
-        ->select('titre', 'contenu', 'created_at' )
-        ->where('amitiees.id_user1','=', $myId)
-        ->where('amitiees.note_user2','!=',-1)
-        ->orWhere('amitiees.id_user2','=', $myId)
-        ->where('amitiees.note_user2','!=',-1)
-        ->latest()->get();
-        
-        $i = 0;
-    
+        $id_amis = array();
+
+        $req = DB::table('amitiees')->select('id_user1')->where('id_user2','=', $myId )->where('note_user2', '!=', -1 )
+        ->get();
+
+        $i=0;
+
         foreach ($req as $req) {
-            $res[$i+1][0] = $req->titre;
-            $res[$i+1][1] = $req->contenu;
-            $res[$i+1][2] = $req->created_at;
+            $id_amis[$i]= $req->id_user1;
+            $id_amis = array_unique($id_amis);
             $i++;
         }
 
-        $res[0] = $i ;
-    
+        $req = DB::table('amitiees')->select('id_user2')->where('id_user1','=', $myId )->where('note_user2', '!=', -1 )
+        ->get();
+
+        foreach ($req as $req) {
+            $id_amis[$i]= $req->id_user2;
+            $id_amis = array_unique($id_amis);
+            $i++;
+        }
+
+        $j = 0;
+
+        for ($i = 0; $i < count($id_amis); $i++){
+
+            $question = DB::table('publication')->where('id_user','=', $id_amis[$i] )->exists();
+
+            if($question == true){
+                $req = DB::table('publication')
+                ->select('publication.titre', 'publication.contenu', 'publication.created_at' )
+                ->where('id_user', "=", $id_amis[$i])
+                ->latest()
+                ->distinct()
+                ->get();
+            
+                foreach ($req as $req) {
+                    $res[$j+1][0] = $req->titre;
+                    $res[$j+1][1] = $req->contenu;
+                    $res[$j+1][2] = $req->created_at;
+                    $j++;
+                }
+            }
+        }
+
+        $res[0] = $j ;
+
         return $res;
 
     }
