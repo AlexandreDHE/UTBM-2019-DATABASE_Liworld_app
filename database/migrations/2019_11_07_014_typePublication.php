@@ -17,6 +17,7 @@ class TypePublication extends Migration
             $table->bigIncrements('id');
             $table->integer('id_publication');
             $table->foreign('id_publication')->references('id')->on('publication');
+            $table->integer('type');
             $table->integer('id_typesContrats');
             $table->foreign('id_typesContrats')->references('id')->on('typesContrats');
             $table->date('dateDebut');

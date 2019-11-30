@@ -37,9 +37,9 @@
                         <label name="choix" style="font-size: 15px;" class="input-group-text" for="inputGroupSelect01">Type de publication</label>
                     </div>
                     <select name="choix" class="custom-select" id="inputGroupSelect01">
-                        <option selected>Simple</option>
+                        <option  value selected>Simple</option>
                         <option value="1">Offre d'emploi</option>
-                        <option value="1">Recherche d'emploi</option>
+                        <option value="2">Recherche d'emploi</option>
                     </select>
                 </div>          
 
@@ -75,7 +75,7 @@
 
             <div class="col-9">
 
-                <textarea id="Contenu" class="form-control{{ $errors->has('Contenu') ? ' is-invalid' : '' }}" name="Contenu" value="{{ old('Contenu') }}" rows="6" cols="60"></textarea>
+                <textarea wrap  id="Contenu" class="form-control{{ $errors->has('Contenu') ? ' is-invalid' : '' }}" name="Contenu" value="{{ old('Contenu') }}" rows="6" cols="60"></textarea>
 
                 @if ($errors->has('Contenu'))
                     <span class="invalid-feedback" role="alert">
@@ -86,6 +86,61 @@
             </div>
             
         </div>
+
+        <br><br>
+
+        <div style="border: 1px solid red;" class="row rounded col-12 mt-4 mb-4 ml-1 bg-white">
+            <h4 class="pl-2 pt-3 d-block text-danger"><b>A Renseigner pour une Offre / Recherche d'emploi</b></h4>
+        </div>
+
+     
+            <div class="media text-muted pt-3">
+
+                <div class="col-3">
+                    <p><strong class="d-block text-danger">Type de contrat:</strong></p>
+                </div>
+
+                <div class="col-9">
+        
+                    <select id="typeContrat" name="typeContrat" class="custom-select" id="typeContrat">
+                        @for ($i = 0; $i < count($types_Contrats)-1; $i++)
+                            <option value={{$types_Contrats[$i+1][1]}}>{{$types_Contrats[$i+1][0]}}</option>
+                        @endfor
+                    </select>
+
+                    @if ($errors->has('typeContrat'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('typeContrat') }}</strong>
+                        </span>
+                    @endif
+
+                </div>
+            </div>
+
+            <div class="media text-muted pt-3">
+
+                <div class="col-3">
+                    <p><strong class="d-block text-danger">Date de début:</strong></p>
+                </div>
+
+                <div class="col-9">
+                    <input id="debut" type="date" class="form-control{{ $errors->has('debut') ? ' is-invalid' : '' }}" name="debut" value="{{ old('debut') }}" >    
+                </div>
+                
+            </div>
+
+            <div class="media text-muted pt-3">
+
+                <div class="col-3">
+                    <p><strong class="d-block text-danger">Date de fin:</strong></p>
+                </div>
+
+                <div class="col-9">
+                    <input id="fin" type="date" class="form-control{{ $errors->has('fin') ? ' is-invalid' : '' }}" name="fin" value="{{ old('fin') }}" >
+                </div>
+                
+            </div>
+
 
         <div class="form-submit">
             <button type="submit" class="btn btn-lg btn-success col-12 mt-5" id="submit" name="submit"><b>Publier</b></button>

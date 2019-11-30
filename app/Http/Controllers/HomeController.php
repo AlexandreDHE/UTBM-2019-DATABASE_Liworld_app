@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Repositories\PublicationRepository;
+use App\Repositories\Types_ContratsRepository;
 use App\Http\Requests\PublicationRequest; 
 
 class HomeController extends Controller
@@ -31,12 +32,13 @@ class HomeController extends Controller
         return view('home')->with('res', $res);
     }
 
-    public function redigerPublicationFORM(){
-        return view('Application/publicationFORM');
+    public function redigerPublicationFORM(Types_ContratsRepository $types_ContratsRepository){
+        $res2 = $types_ContratsRepository->getData();
+        return view('Application/publicationFORM')->with('types_Contrats', $res2);
     }
     
     public function postFormPublication(PublicationRepository $publicationRepository, PublicationRequest $request ){
-        $publicationRepository->save(Auth::id(), $request->input('choix'), $request->input('titre'), $request->input('Contenu') );
+        $publicationRepository->save(Auth::id(), $request->input('choix'), $request->input('titre'), $request->input('Contenu'),  $request->input('typeContrat'),  $request->input('debut'), $request->input('fin') );
         $res = array(array());
         $res = $publicationRepository->showPublications(Auth::id());
         return view('home')->with('res', $res);

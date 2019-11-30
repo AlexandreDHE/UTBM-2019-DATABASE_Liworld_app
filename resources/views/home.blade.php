@@ -14,81 +14,44 @@
 
 <main role="main" class="container">
 
-
-
-
-
-
-
 @for ($i = 0; $i < count($res)-1; $i++)
 
+    <div style="background-color:#e3e8ea;" class="mb-5 my-3 p-3 rounded shadow-sm" >
 
-
-<div style="background-color:#e2e2e2;" class="my-3 p-3 rounded shadow-sm" >
-
-    <div style="background-color:#279bce;" class="d-flex align-items-center my-3 text-white-50 rounded shadow-sm ">
-        <div class="col-3">
-            <img src="{{ asset('images/offre.png') }}" width="75%" class="mx-auto d-block" alt="Responsive image"> 
+        <div  class="d-flex align-items-center my-3 text-white-50 rounded shadow-sm bg-dark ">
+            <div class="col-3">
+                <img src="{{ asset('images/offre.png') }}" width="50%" class="mx-auto d-block p-3" alt="Responsive image"> 
+            </div>
+            <div class="col-8">
+                <h3 class="pt-3 text-white "><b> {{$res[$i+1][0]}} </b></h3>
+            </div>
         </div>
-        <div class="col-8">
-            <h1 class="pt-3 text-white "></b> {{$res[$i+1][0]}} </b></h1>
-        </div>
-    </div>
 
-    <div class="card-body secondary">
-               
-        <div class="row">
-            
-            <div class="col-2">
-                <div class="media text-muted pt-3">
-                    <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
-                        <strong class="d-block text-dark">Domaine:</strong>
-                    </p>
-                    </div>
-                </div>
-
-                <div class="col-2">
+        <div class="card-body secondary">
+                
+            <div class="row">
+                
+                <div class="col-12">
                     <div class="media text-muted pt-3">
-                    <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
-                        <strong class="d-block text-dark">Contrat:</strong>
-                    </p>
+                        <p style="font-size: 18px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
+                            <strong class="d-block text-dark">Auteur:</strong>
+                        </p>
                     </div>
                 </div>
 
-                <div class="col-2">
-                    <div class="media text-muted pt-3">
-                    <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
-                        <strong class="d-block text-dark">Date de début:</strong>{{$res[$i+1][2]}}
-                    </p>
-                    </div>
-                </div>
-
-                <div class="col-2">
-                    <div class="media text-muted pt-3">
-                    <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
-                        <strong class="d-block text-dark">Date de fin:</strong>
-                    </p>
-                    </div>
-                </div>
-            
                 <div class="col-12 mx-auto  rounded mt-4">
                     <div class="row ">
                         <div class="col-sm">
-                            <div style="background-color:white; border:1px solid gray;" class="row rounded">
-                            <h4 class="pl-2 pt-2 d-block text-dark "><b>Description :</b> </h4>
-                            </div>
-                            <div class="row">
-                            <p style="font-size: 16px;" class="pl-2 pt-3 d-block text-dark ">{{$res[$i+1][1]}}</p>
+                            
+                            <div class="mt-3 row bg-white rounded">
+                                <p style="font-size: 16px;" class="pl-2 p-3 d-block text-dark "><b>{{$res[$i+1][1]}}</b></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-</div>
-
-    
-  </div>
+        </div>
+    </div>
 
   @endfor
 
