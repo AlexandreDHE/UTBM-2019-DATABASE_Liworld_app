@@ -121,6 +121,7 @@
 </html>
 
 <script>
+
  $(document).ready(function() {
     $( "#search" ).autocomplete({
  

@@ -37,8 +37,9 @@ class ProfilController extends Controller
 
   public function search(Request $request)
   {
-    $search = $request->get('term');
-    $result = User::where('name', 'LIKE', '%'. $search. '%')->get();
+    $search = strtoupper ($request->get('term'));
+    $result = User::where('name', 'LIKE', '%'. $search. '%')
+    ->orWhere('firstName', 'LIKE', '%'. $search. '%')->get();
     return response()->json($result);
   } 
 
@@ -116,21 +117,25 @@ class ProfilController extends Controller
   }
 
 
-  public function confirmerUneConnexion(Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository,SearchRequest $request1, ProfilRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
+  public function confirmerUneConnexion(FormationsRepository $formationsRepository, Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository,SearchRequest $request1, ProfilRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
     $amitieesRepository->confirmerUneConnexion(Auth::id(),$request->input('id_user2'), $request->input('note'));
     $res = $usersRepository->getDataID($request->input('id_user2'));
     $conencte = $amitieesRepository->sommesNousConnecte(Auth::id(), $res[0]);
 
     $res1 = $experiences_professionnellesRepository->getData($res[0]);
 
-        for ($i = 0; $i < count($res1)-1; $i++){
-            $res1[$i+1][0] = $types_ContratsRepository->getTypeContrat((int) $res1[$i+1][0]);
-            $res1[$i+1][1] = $entreprisesRepository->getNOM((int) $res1[$i+1][1]);
-        }
+    for ($i = 0; $i < count($res1)-1; $i++){
+        $res1[$i+1][0] = $types_ContratsRepository->getTypeContrat((int) $res1[$i+1][0]);
+        $res1[$i+1][1] = $entreprisesRepository->getNOM((int) $res1[$i+1][1]);
+    }
 
-        $res[2][4];
+    $res[2][4];
 
-    return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte)->with('res', $res1);
+    $res2 = $formationsRepository->getData(Auth::id());
+
+
+
+    return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte)->with('res', $res1)->with('res2', $res2);
   }
 
 
