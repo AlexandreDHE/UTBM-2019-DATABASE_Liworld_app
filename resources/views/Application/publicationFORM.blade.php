@@ -37,7 +37,7 @@
                         <label name="choix" style="font-size: 15px;" class="input-group-text" for="inputGroupSelect01">Type de publication</label>
                     </div>
                     <select name="choix" class="custom-select" id="inputGroupSelect01">
-                        <option  value selected>Simple</option>
+                        <option value="0" selected>Simple</option>
                         <option value="1">Offre d'emploi</option>
                         <option value="2">Recherche d'emploi</option>
                     </select>
