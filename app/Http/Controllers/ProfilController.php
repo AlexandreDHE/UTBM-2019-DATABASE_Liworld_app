@@ -150,7 +150,7 @@ class ProfilController extends Controller
 
       $res2 = $formationsRepository->getData(Auth::id());
     
-    return view('Application/monProfil')->with('res', $res1)->with('$res2', $res2);
+    return view('Application/monProfil')->with('res', $res1)->with('res2', $res2);
   }
 
 
