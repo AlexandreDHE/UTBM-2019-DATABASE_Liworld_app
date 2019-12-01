@@ -31,7 +31,7 @@
             </div>
 
             <div class="col-12">               
-                <h4 class=" p-2 text-white"><b>{{$res[$i+1][1][0]}} {{$res[$i+1][1][1]}}</b></h4>
+                <h4 class=" p-2 text-white"><b>{{$res[$i+1][1][1]}} {{$res[$i+1][1][0]}} recherche un poste !</b></h4>
             </div>
 
         @elseif( $res[$i+1][5] == 1 )
@@ -47,7 +47,7 @@
             </div>
 
             <div class="col-12">               
-                <h4 class=" p-2 text-white"><b>{{$res[$i+1][1][0]}} {{$res[$i+1][1][1]}}</b></h4>
+                <h4 class=" p-2 text-white"><b>{{$res[$i+1][1][1]}} {{$res[$i+1][1][0]}} propose un poste !  </b></h4>
             </div>
         @endif
 
@@ -64,7 +64,7 @@
             </div>
 
             <div class="col-12">
-                <h4 class=" p-2 text-white"><strong class="text-white">Auteur:</strong><b>{{$res[$i+1][1][0]}} {{$res[$i+1][1][1]}}</b></h4>
+                <h4 class=" p-2 text-white"><strong class="text-white">Auteur:</strong><b>{{$res[$i+1][1][1]}} {{$res[$i+1][1][0]}} souhaite vous dire que ...   </b></h4>
             </div>
     @endif
 

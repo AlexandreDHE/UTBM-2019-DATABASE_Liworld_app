@@ -31,9 +31,29 @@ class FormationsRepository implements FormationsRepositoryInterface
 
     }
 
-    public function getData()
+    public function getData($id_user)
     {
+        $res = array(array());
+        $req = DB::table('formations')
+            ->select('ecole', 'diplome', 'dateDebut', 'dateFin', 'resultat', 'description')
+            ->where('id_user', $id_user)
+            ->get();
+    
+        $i = 0;
+    
+        foreach ($req as $value) {
+            $res[$i+1][0] = $value->ecole;
+            $res[$i+1][1] = $value->diplome;
+            $res[$i+1][2] = $value->dateDebut;
+            $res[$i+1][3] = $value->dateFin;
+            $res[$i+1][4] = $value->resultat;
+            $res[$i+1][5] = $value->description;
+            $i++;
+        }
 
+        $res[0] = $i ;
+    
+        return $res;
     }
 
     public function getID($id_user)

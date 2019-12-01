@@ -65,7 +65,7 @@ Route::get('/getformFormation', 'ProfilController@getFormFormation')->name('getF
 
 
 
-Route::post('/formationform', 'FormationController@postFormFormation')->name('formationFORM');
+Route::post('/formationform', 'ProfilController@postFormFormation')->name('formationFORM');
 
 Route::get('/user', 'ProfilController@ajouterUneConnexion')->name('ajouterUneConnexion');
 Route::get('/delete', 'ProfilController@annulerUneConnexion')->name('annulerUneConnexion');

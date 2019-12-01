@@ -8,8 +8,10 @@ use App\Http\Requests\SearchRequest;
 use App\Http\Requests\ProfilRequest;
 use App\Http\Requests\ExperienceProRequest; 
 use App\Http\Requests\PublicationRequest; 
-
+use App\Http\Requests\FormationRequest; 
 use App\Repositories\Experiences_professionnellesRepository;
+use App\Repositories\Formations_DomainesRepository;
+use App\Repositories\FormationsRepository;
 use App\Repositories\UsersRepository;
 use App\Repositories\AmitieesRepository;
 use App\Repositories\DomainesRepository;
@@ -40,7 +42,7 @@ class ProfilController extends Controller
     return response()->json($result);
   } 
 
-  public function getMonProfil(Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository){
+  public function getMonProfil(FormationsRepository $formationsRepository, Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository){
 
     $res1 = $experiences_professionnellesRepository->getData(Auth::id());
 
@@ -49,11 +51,13 @@ class ProfilController extends Controller
           $res1[$i+1][1] = $entreprisesRepository->getNOM((int) $res1[$i+1][1]);
       } 
 
-    return view('Application/monProfil')->with('res', $res1);
+    $res2 = $formationsRepository->getData(Auth::id());
+
+    return view('Application/monProfil')->with('res', $res1)->with('res2', $res2);
   }
 
 
-  public function getProfil(Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository,SearchRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
+  public function getProfil(FormationsRepository $formationsRepository, Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository,SearchRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
     
     $res = $usersRepository->getData($request->input('search'));
     $conencte = $amitieesRepository->sommesNousConnecte(Auth::id(), $res[0]);
@@ -67,7 +71,9 @@ class ProfilController extends Controller
 
       $res[2][4];
 
-    return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte)->with('res', $res1);
+      $res2 = $formationsRepository->getData($res[0]);
+
+    return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte)->with('res', $res1)->with('res2', $res2);
   }
 
 
@@ -128,7 +134,7 @@ class ProfilController extends Controller
   }
 
 
-  public function postFormExperiencePro(EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository ,Experiences_professionnellesRepository $experiences_professionnellesRepository, ExperienceProRequest $request ) 
+  public function postFormExperiencePro(FormationsRepository $formationsRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository ,Experiences_professionnellesRepository $experiences_professionnellesRepository, ExperienceProRequest $request ) 
   {
     $id_user = Auth::id();
     $res1 = $entreprisesRepository->getData();
@@ -141,12 +147,14 @@ class ProfilController extends Controller
           $res1[$i+1][0] = $types_ContratsRepository->getTypeContrat((int) $res1[$i+1][0]);
           $res1[$i+1][1] = $entreprisesRepository->getNOM((int) $res1[$i+1][1]);
       } 
+
+      $res2 = $formationsRepository->getData(Auth::id());
     
-    return view('Application/monProfil')->with('res', $res1);
+    return view('Application/monProfil')->with('res', $res1)->with('$res2', $res2);
   }
 
 
-  public function postFormFormation(FormationsRepository $formationsRepository, DomainesRepository $domainesRepository, Formations_DomainesRepository $formations_DomainesRepository,FormationRequest $request) 
+  public function postFormFormation(EntreprisesRepository  $entreprisesRepository,Types_ContratsRepository $types_ContratsRepository, Experiences_professionnellesRepository $experiences_professionnellesRepository, FormationsRepository $formationsRepository, DomainesRepository $domainesRepository, Formations_DomainesRepository $formations_DomainesRepository,FormationRequest $request) 
   {
       $id_user = Auth::id();
       $formationsRepository->save($id_user, $request->input('ecole'), $request->input('diplome'), strtoupper ($request->input('debut')), $request->input('fin'), $request->input('resultat'), $request->input('description'));
@@ -160,9 +168,16 @@ class ProfilController extends Controller
       
       $formationsRepository->setFalseDernierAjout($id_user);
     
-      $res1 = array(array());
-      $res1 = $domainesRepository->getData();
-      return view('Application/formationsFORM')->with('domaines', $res1);
+      $res1 = $experiences_professionnellesRepository->getData(Auth::id());
+
+      for ($i = 0; $i < count($res1)-1; $i++){
+          $res1[$i+1][0] = $types_ContratsRepository->getTypeContrat((int) $res1[$i+1][0]);
+          $res1[$i+1][1] = $entreprisesRepository->getNOM((int) $res1[$i+1][1]);
+      } 
+
+      $res2 = $formationsRepository->getData(Auth::id());
+
+      return view('Application/monProfil')->with('res', $res1)->with('res2', $res2);
   }
 
 

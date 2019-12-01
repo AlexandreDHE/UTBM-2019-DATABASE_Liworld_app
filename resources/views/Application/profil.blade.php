@@ -195,25 +195,98 @@
     <!-- --------------------------------------------------------------------------------------------------- -->
     
     <div class="album py-5 bg-light">
-      <div class="container">
+        <div class="container">
 
-        <div class="row ">
-          <div class="col-md-12">
-            <div class="card mb-4 shadow-sm">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4 shadow-sm">
 
-              <div style="background-color:#eda628;" class=" p-2 row rounded">
-                <div class="col-2">
-                  <img src="{{ asset('images/formation.png') }}" width="100%" class="mx-auto d-block" alt="Responsive image"> 
+                        <div style="background-color:#eda628;" class="row rounded p-1">
+                            <div class="col-3">
+                                <img src="{{ asset('images/formation.png') }}" width="75%" class="mx-auto d-block" alt="Responsive image"> 
+                            </div>
+                            <div class="col-8">
+                                <h1 class="pt-5 text-dark "></b>FORMATIONS</b></h1>
+                            </div>
+                            <div class="col-1">
+
+                                <form class="form-inline mt-2 mt-md-0" method="GET" class="register-form" action="{{ route('getFormFormation') }}">
+                                    <button type="submit" class="mt-5 btn btn-outline-dark">New</button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                @for ($i = 0; $i < count($res2)-1; $i++)
+                <!-- formations   --> 
+                <div class="card-body secondary">
+                <div class="my-3 p-3 bg-white rounded shadow-sm ">
+                    <div style="background-color:#eda628;" class="row mb-2 rounded">
+                        <h4 class="pl-3 pt-3 border-bottom border-gray pb-2 mb-0 text-white">{{$res2[$i+1][0]}}</h4>
+                    </div>
+
+                    <div class="media text-muted pt-3">
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="{{ asset('images/iconephoto.png') }}" width="100%" class=" d-block" alt="Responsive image"> 
+                            </div>
+
+                            <div class="col-10">
+                                <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-dark">
+                                    <strong class="d-block text-dark">Diplome</strong> {{$res2[$i+1][1]}}   
+                                </p>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="media text-muted pt-3">
+                                    <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125 text-dark">
+                                        <strong class="d-block text-dark">Date de début:</strong>{{$res2[$i+1][2]}} 
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="media text-muted pt-3">
+                                    <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125  text-dark">
+                                        <strong class="d-block text-dark">Date de fin:</strong>{{$res2[$i+1][3]}} 
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="media text-muted pt-3">
+                                    <p style="font-size: 14px;" class="media-body pb-3 mb-0 small lh-125  text-dark">
+                                        <strong class="d-block text-dark">Résultat:</strong>{{$res2[$i+1][4]}} 
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                    
+                    <div class="col-11 mx-auto  rounded mt-4">
+                        <div class="row ">
+                            <div class="col-sm">
+                                <div style="background-color:#e3e8ea;" class="row rounded">
+                                    <h4 class="pl-2 pt-3 d-block text-dark "><b>Résumé de la formation:</b> </h4>
+                                </div>
+                            <div class="row">
+                            <p style="font-size: 16px;" class="pl-2 pt-3 d-block text-dark ">{{$res2[$i+1][5]}} </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-7">
-                  <h1 class="pt-5 text-dark "><b>Formations</b></h1>
+                    </div>
+                    </div>
                 </div>
-              </div>
-
+                </div>
+                <!-- FIN -->
+                @endfor 
+                    </div>
+                </div>
             </div>
-          </div>
-        </div> 
-      </div>
+        </div>
     </div>
 
     @endif
