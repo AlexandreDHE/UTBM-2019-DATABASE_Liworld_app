@@ -1,5 +1,12 @@
 ## UTBM-2019-DATABASE_Liworld_app
 
+## Status 
+In development
+
+## Link 
+http://www.liworld-site.com/register
+
+## Description 
    In the online professional social media market, we know at least one: LinkedIn. This network works on the principle of connection and networking, and thus allows find work, employers, employees or just develop a business. However, although for some LinkedIn is a key tool, others find it more difficult to appropriate it and more particularly the students. 
 
    Indeed, one of the problems that students encounter is that of the lack of result. For example, most students use LinkedIn to find an internship, a work-study program or a first job by writing a publication accompanied by a CV. The approach is rather legitimate since this application combines all the elements for our request to succeed. However, for the majority this approach is somewhat convincing and almost never succeeds. It is natural to wonder why. Added to this is the problem linked to the very construction of its own network. Indeed, having a network of +500 connections is the very definition of a professional network we can count on? This is another question that we can also ask us. 
