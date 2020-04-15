@@ -58,23 +58,31 @@ class ProfilController extends Controller
   }
 
 
-  public function getProfil(FormationsRepository $formationsRepository, Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository,SearchRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
+  public function getProfil(PublicationRepository $publicationRepository, FormationsRepository $formationsRepository, Experiences_professionnellesRepository $experiences_professionnellesRepository, EntreprisesRepository $entreprisesRepository, Types_ContratsRepository $types_ContratsRepository,SearchRequest $request, UsersRepository $usersRepository, AmitieesRepository $amitieesRepository){
     
     $res = $usersRepository->getData($request->input('search'));
-    $conencte = $amitieesRepository->sommesNousConnecte(Auth::id(), $res[0]);
 
-    $res1 = $experiences_professionnellesRepository->getData($res[0]);
+    if($res != -1){
+      $conencte = $amitieesRepository->sommesNousConnecte(Auth::id(), $res[0]);
 
-      for ($i = 0; $i < count($res1)-1; $i++){
-          $res1[$i+1][0] = $types_ContratsRepository->getTypeContrat((int) $res1[$i+1][0]);
-          $res1[$i+1][1] = $entreprisesRepository->getNOM((int) $res1[$i+1][1]);
-      }
+      $res1 = $experiences_professionnellesRepository->getData($res[0]);
 
-      $res[2][4];
+        for ($i = 0; $i < count($res1)-1; $i++){
+            $res1[$i+1][0] = $types_ContratsRepository->getTypeContrat((int) $res1[$i+1][0]);
+            $res1[$i+1][1] = $entreprisesRepository->getNOM((int) $res1[$i+1][1]);
+        }
 
-      $res2 = $formationsRepository->getData($res[0]);
+        $res[2][4];
 
-    return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte)->with('res', $res1)->with('res2', $res2);
+        $res2 = $formationsRepository->getData($res[0]);
+
+      return view('Application/profil')->with('userInfo', $res )->with('auth', Auth::id())->with('connecte', $conencte)->with('res', $res1)->with('res2', $res2);
+    }else {
+      $res = array(array());
+      $res = $publicationRepository->showPublications(Auth::id());
+      return view('home')->with('res', $res);
+    }
+    
   }
 
 
